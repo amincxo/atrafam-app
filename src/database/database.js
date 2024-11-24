@@ -18,6 +18,8 @@ export let sellerTamplate = {
     products:{
         name:'',
         price:'',
+        photo:'',
+        description:'',
     }
 }
 
