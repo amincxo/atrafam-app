@@ -1,28 +1,51 @@
 {
-  "expo": {
-    "name": "atrafam-app",
-    "slug": "atrafam-app",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./src/assets/icon.png",
-    "userInterfaceStyle": "light",
-    "newArchEnabled": true,
-    "splash": {
-      "image": "./src/assets/logo.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./src/assets/adaptive-icon.png",
+    "expo": {
+      "name": "atrafam-app",
+      "slug": "atrafam-app",
+      "version": "1.0.0",
+      "orientation": "portrait",
+      "icon": "./src/assets/icon.png",
+      "userInterfaceStyle": "light",
+      "newArchEnabled": true,
+      "splash": {
+        "image": "./src/assets/logo.png",
+        "resizeMode": "contain",
         "backgroundColor": "#ffffff"
+      },
+      "plugins": [
+        [
+          "expo-camera",
+          {
+            "cameraPermission": "اجازه استفاده از دوربین را می‌دهید؟"
+          }
+        ],
+        [
+          "expo-image-picker",
+          {
+            "photosPermission": "The app accesses your photos to let you share them with your friends."
+          }
+        ]
+      ],
+      "android": {
+        "adaptiveIcon": {
+          "foregroundImage": "./src/assets/adaptive-icon.png",
+          "backgroundColor": "#ffffff"
+        },
+        "permissions": [
+          "CAMERA",
+          "READ_EXTERNAL_STORAGE",
+          "WRITE_EXTERNAL_STORAGE"
+        ]
+      },
+      "ios": {
+        "supportsTablet": true,
+        "infoPlist": {
+          "NSCameraUsageDescription": "این برنامه برای گرفتن عکس به دوربین نیاز دارد.",
+          "NSPhotoLibraryUsageDescription": "این برنامه برای انتخاب عکس به گالری نیاز دارد."
+        }
+      },
+      "web": {
+        "favicon": "./assets/favicon.png"
       }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     }
   }
-}

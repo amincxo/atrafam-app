@@ -6,15 +6,18 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AuthProvider } from './src/context/AuthContext';
 import SplashScreen from './src/screens/SplashScreen';
-import SearchScreen from './src/screens/SearchScreen';
-import MapScreen from './src/screens/MapScreen';
+import SearchScreen from './src/screens/userScreens/SearchScreen';
+import MapScreen from './src/screens/userScreens/MapScreen';
 import LoginScreen from './src/screens/auth/LoginScreen';
-import SignUpSelctor from './src/screens/SignUpSelctor';
+import SignUpSelctor from './src/screens/auth/SignUpSelctor';
 import SellerSignUp from './src/screens/auth/SellerSignUp';
 import UserSignUp from './src/screens/auth/UserSignUp';
+import SellerPage from './src/screens/sellerScreens/SellerPage';
+
 
 
 const Stack = createStackNavigator();
+
 
 export default function App() {
   return (
@@ -26,6 +29,7 @@ export default function App() {
             <Stack.Screen name='SignUpSelctor' component={SignUpSelctor} />
             <Stack.Screen name='SellerSignUp' component={SellerSignUp} />
             <Stack.Screen name='UserSignUp' component={UserSignUp} />
+            <Stack.Screen name='SellerPage' component={SellerPage} />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Search" component={SearchScreen} />
             <Stack.Screen name="Map" component={MapScreen} />
