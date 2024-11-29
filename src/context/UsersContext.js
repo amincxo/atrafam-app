@@ -35,6 +35,7 @@ export const UserProvider = ({ children }) => {
             fromDataset: true,
             products: [
                 {
+                    fromDataset: true,
                     id: 1,
                     name: 'صابون',
                     number: 5,
