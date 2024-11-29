@@ -3,13 +3,14 @@ import React, { useEffect, useState } from 'react'
 import { sellerTamplate } from '../../database/database'
 import * as ImagePicker from 'expo-image-picker'
 import MapView , {Marker} from 'react-native-maps'
-import { users } from '../../database/database'
-import { sellers } from '../../database/database'
+import { useUserContext } from '../../context/UsersContext'; 
+
 
 
 const SellerSignUp = ({navigation}) => {
     const [seller , setSeller] = useState(sellerTamplate)
     const [location, setLocation] = useState(null);
+    const { sellers , users } = useUserContext();
 
 
     useEffect(()=>{
@@ -190,6 +191,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         marginBottom: 20,
+        marginTop:40,
       },
       mapContainer: {
         height: 300,

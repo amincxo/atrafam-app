@@ -13,15 +13,23 @@ export let sellerTamplate = {
     email:'',
     username:'',
     password:'',
-    location :'',
+    storeLocation :'',
     phone:'',
-    products:{
-        name:'',
-        price:'',
-        photo:'',
-        description:'',
-    }
+    products: [],
 }
 
-export let users = [];
-export let sellers = [];
+export let productTamplate = {
+    id:'',
+    name:'',
+    price:0,
+    number: 1,
+    description:'',
+    fromDataset: false,
+    photo:{
+        img0:'',
+        img1:'',
+        img2:'',
+        img3:'',
+        img4:'',
+    },
+}

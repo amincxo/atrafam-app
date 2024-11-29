@@ -77,6 +77,7 @@ export default function SplashScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
+    fontFamily: 'Yekan',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

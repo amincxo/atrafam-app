@@ -1,10 +1,10 @@
 import React , {useState} from 'react'
 import { View, Text , Image , TextInput , TouchableOpacity , StyleSheet , Alert} from 'react-native'
 import { useAuth } from '../../context/AuthContext'
-import { users } from '../../database/database'
-import { sellers } from '../../database/database'
+import { useUserContext } from '../../context/UsersContext'; 
 
 export default function LoginScreen ({ navigation }) {
+    const { sellers , users } = useUserContext();
 
     const [username , setUsername] = useState('');
     const [password , setPassword] = useState('');
@@ -84,6 +84,7 @@ export default function LoginScreen ({ navigation }) {
 
 const styles = StyleSheet.create({
     container: {
+      fontFamily: 'BYekanBold',
       flex: 1,
       padding: 20,
       justifyContent: 'center',

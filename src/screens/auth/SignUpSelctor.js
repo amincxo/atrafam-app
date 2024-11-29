@@ -34,6 +34,7 @@ export default SignUpSelctor
 
 const styles = StyleSheet.create({
     container: {
+        fontFamily: 'Yekan',
         display:'flex',
         flex:1,
         justifyContent: 'center',
@@ -52,6 +53,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
       },
       title: {
+        fontFamily: 'Yekan',
         fontSize: 22,
         fontWeight: 'bold',
         marginBottom: 20,

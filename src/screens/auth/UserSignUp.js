@@ -1,13 +1,14 @@
 import { View, TextInput ,Image , Text ,TouchableOpacity , StyleSheet, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { userTamplate } from '../../database/database'
-import { users } from '../../database/database'
-import { sellers } from '../../database/database'
+import { useUserContext } from '../../context/UsersContext'; 
 import * as ImagePicker from 'expo-image-picker'
 
 
 
 const UserSignUp = ({navigation}) => {
+    const { sellers , users } = useUserContext();
+
     const [user , setUser] = useState(userTamplate)
     useEffect(()=>{
         console.log(user)
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
         borderColor: '#ddd',
         borderRadius: 8,
         paddingHorizontal: 15,
-        marginBottom: 15,
+        marginBottom: 20,
         fontSize: 16,
         backgroundColor: '#f9f9f9',
       },
@@ -150,6 +151,7 @@ const styles = StyleSheet.create({
       },
       imageholder : {
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom:40,
       }
 })
