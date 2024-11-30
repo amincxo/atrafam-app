@@ -1,9 +1,11 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons'; // import آیکون
+import Micons from 'react-native-vector-icons/MaterialCommunityIcons'; // import آیکون
 import Profile from './Profile';
 import AddProduct from './AddProduct';
 import Products from './Products';
+import DashboardScreen from './DashboardScreen';
 import { useAuth } from '../../context/AuthContext'
 import { Image, View } from 'react-native';
 
@@ -17,27 +19,38 @@ const SellerPage = () => {
         
       <Tab.Navigator>
             <Tab.Screen 
+            name="DashboardScreen" 
+            component={DashboardScreen} 
+            options={{
+                headerShown: false,
+                title: 'داشبورد',
+                tabBarIcon: ({ color, size }) => (
+                <Micons name="view-dashboard" color={color} size={size+1} />
+                )
+            }}
+            />
+        <Tab.Screen 
+          name="AddProduct" 
+          component={AddProduct} 
+          options={{
+              headerShown:false,
+              title: 'افزودن محصول',
+              tabBarIcon: ({ color, size }) => (
+                  <Ionicons name="add-circle" color={color} size={size+1} />
+                )
+            }}
+        />
+            <Tab.Screen 
           name="Products" 
           component={Products} 
           options={{
             headerShown: false,
-            title: 'محصولات',
+            title: 'مدیریت محصولات',
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="list" color={color} size={size+1} />
             )
           }}
           />
-        <Tab.Screen 
-          name="AddProduct" 
-          component={AddProduct} 
-          options={{
-            headerShown:false,
-            title: 'افزودن محصول',
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="add-circle" color={color} size={size+1} />
-            )
-          }}
-        />
         <Tab.Screen 
           name="Profile" 
           component={Profile} 

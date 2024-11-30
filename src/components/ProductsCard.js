@@ -2,23 +2,20 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useAuth } from '../context/AuthContext';
+
 const ProductsCard = (props) => {
     const { description, name, photo, price, number, fromDataset, setUser  } = props.product.item;
     const { user } = useAuth();
-    console.log(fromDataset)
 
     const numberHandler = (action) => {
-        // Create a copy of the product item
         const updatedProduct = { ...props.product.item };
 
-        // Increase or decrease the number value
         if (action === 'Increase') {
-            updatedProduct.number += 1; // Increment the number
+            updatedProduct.number += 1;
         } else if (action === 'Decrease' && updatedProduct.number > 0) {
-            updatedProduct.number -= 1; // Decrement the number
+            updatedProduct.number -= 1;
         }
 
-        // Update the user state
         props.setUser ((prevUser ) => {
             const updatedProducts = prevUser .products.map((prod) =>
                 prod.id === updatedProduct.id ? updatedProduct : prod
@@ -31,39 +28,30 @@ const ProductsCard = (props) => {
         <View style={styles.container}>
             <View style={styles.imageHolder}>
                 {fromDataset ? (
-                    <Image source={photo.img0} style={styles.imges} />
+                    <Image source={photo.img0} style={styles.images} />
                 ) : photo.img0 ? (
-                    <Image source={{ uri: photo.img0?.uri }} style={styles.imges} />
+                    <Image source={{ uri: photo.img0?.uri }} style={styles.images} />
                 ) : (
-                    <Image source={require('../assets/profileUser.png')} style={styles.imges} />
+                    <Image source={require('../assets/profileUser.png')} style={styles.images} />
                 )}
             </View>
-            <View style={styles.containerXm}>
-                <View style={styles.containerXm1}>
-                    <Text style={{ paddingTop: 5, color: '#636262' }}>{price} تومان</Text>
-                    <Text style={{ fontSize: 18 }}> نام : {name}</Text>
+            <View style={styles.detailsContainer}>
+                <View style={styles.headerContainer}>
+                    <Text style={styles.priceText}>{price} تومان</Text>
+                    <Text style={styles.nameText}>{name}</Text>
                 </View>
-                <View style={styles.containerXm2}>
-                    <Text style={{textAlign: 'right',writingDirection: 'rtl',alignSelf: 'flex-start'
-        }} >توضیحات : {description}</Text>
+                <Text style={styles.descriptionText}> {description}</Text>
+                <View style={styles.stockContainer}>
+                    <Text style={styles.stockText}>تعداد موجود در فروشگاه</Text>
+                <View style={styles.counterContainer}>
+                    <TouchableOpacity onPress={() => numberHandler('Increase')}>
+                        <Icon name="add-circle-outline" size={24} color="#007AFF" />
+                    </TouchableOpacity>
+                    <Text style={styles.counterText}>{number}</Text>
+                    <TouchableOpacity onPress={() => numberHandler('Decrease')}>
+                        <Icon name="remove-circle-outline" size={24} color="#007AFF" />
+                    </TouchableOpacity>
                 </View>
-                <View style={[styles.containerXm3, { marginTop: 20 }]}>
-                    <TouchableOpacity
-                        style={{ paddingRight: 10, marginTop: 10 }}
-                        onPress={() => numberHandler('Increase')}   
-                    >
-                        <Icon name="add-circle-outline" size={20} color="#007AFF" />
-                    </TouchableOpacity>
-                    <Text style={{ marginTop: 10 , fontSize:16 }}>{number}</Text>
-                    <TouchableOpacity
-                        style={{ paddingLeft: 10, marginTop: 10 }}
-                        onPress={() => numberHandler('Decrease')}  
-                    >
-                        <Icon name="remove-circle-outline" size={20} color="#007AFF" />
-                    </TouchableOpacity>
-                    <View style={styles.containerXm2}>
-                        <Text>تعداد موجود در فروشگاه</Text>
-                    </View>
                 </View>
             </View>
         </View>
@@ -73,44 +61,84 @@ const ProductsCard = (props) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        flex: 1,
-        borderWidth: 1,
-        borderColor: 'gray',
-        borderRadius: 30,
-        padding: 10,
-        justifyContent: 'space-between',
-        marginBottom:20
+        backgroundColor: '#f9f9f9',
+        borderRadius: 15,
+        padding: 15,
+        marginBottom: 20,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 2,
     },
-    containerXm: {
-        flexDirection: 'column',
+    detailsContainer: {
         flex: 3,
-        paddingRight: 10,
+        paddingLeft: 15,
     },
-    containerXm1: {
+    headerContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center',
     },
-    containerXm2: {
+    priceText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#007AFF',
+    },
+    nameText: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#333',
+    },
+    descriptionText: {
+        marginTop: 5,
+        color: '#636262',
+        textAlign: 'right',
+        writingDirection: 'rtl',
+    },
+    counterContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 15,
+    },
+    counterText: {
+        marginHorizontal: 10,
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#333',
+    },
+    stockContainer: {
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        flex: 1,
-        marginTop: 5,
-        
+        alignItems:'flex-end',
+        marginTop: 10,
     },
-    containerXm3: {
-        flexDirection: 'row',
-        alignItems:'center',
-        flex: 1,
+    stockText: {
+        color: '#636262',
+        textAlign: 'right',
+        writingDirection: 'rtl',
+        marginRight:10,
+        marginBottom: 3,
     },
-    imges: {
+    images: {
         width: 100,
         height: 100,
-        borderRadius: 20,
-        marginRight: 20,
+        borderRadius: 15,
+        borderWidth: 1,
+        borderColor: '#ddd',
     },
     imageHolder: {
         flex: 1,
-        marginRight: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    imageHolder: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
 
