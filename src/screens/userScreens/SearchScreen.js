@@ -14,7 +14,7 @@ export default function SearchScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-        <Text style={styles.welcomeText} > {user?.username} خوش آمدید </Text>
+        <Text style={styles.welcomeText} > {user?.name} خوش آمدید </Text>
       <TextInput
         style={styles.input}
         placeholder="جستجوی کالا..."
